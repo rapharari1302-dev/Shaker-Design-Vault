@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Shaker Design Vault</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="noise"></div><div class="orb orb-one"></div><div class="orb orb-two"></div>
+  <main class="site-shell">
+    <header><a class="brand" href="#top"><span class="brand-mark">S</span><span>SHAKER <i>VAULT</i></span></a><button id="logout" class="tiny-button">ABMELDEN ↗</button></header>
+    <section class="hero" id="top"><p class="eyebrow">DESIGN ARCHIVE / 2026</p><h1>SHAKER<br><em>DESIGNS.</em></h1><p class="hero-copy">Ein kuratiertes Archiv für unsere neuesten Shaker-Konzepte.</p><div class="hero-footer"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span>01 — ∞</span></div></section>
+    <section class="vault-grid"><div class="section-heading"><p class="eyebrow">THE COLLECTION</p><h2>Downloads</h2><span id="file-count">0 Dateien</span></div><div class="file-list" id="file-list"></div><p class="empty" id="empty-state">Noch keine Designs im Vault.</p></section>
+    <footer><span>© SHAKER DESIGN STUDIO</span><span>MADE TO MIX THINGS UP</span></footer>
+  </main>
+  <section class="login-wrap" id="login-screen"><div class="login-card"><div class="login-glow"></div><div class="vault-icon">✦</div><p class="eyebrow">PRIVATE ACCESS</p><h1>WELCOME<br><em>INSIDE.</em></h1><p>Bitte gib das Zugangspasswort ein, um den Shaker Vault zu öffnen.</p><form id="login-form"><label for="password">ACCESS CODE</label><div class="password-row"><input id="password" type="password" autocomplete="current-password" placeholder="••••••••" required><button>ENTER <span>→</span></button></div><p class="error" id="login-error" aria-live="polite"></p></form></div></section>
+  <div class="toast" id="toast"></div><script src="app.js"></script>
+</body></html>
