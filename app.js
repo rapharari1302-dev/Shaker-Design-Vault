@@ -10,11 +10,13 @@ const count = document.querySelector('#file-count');
 function formatSize(bytes) { if (!bytes) return '0 KB'; const units=['B','KB','MB','GB']; const i=Math.min(Math.floor(Math.log(bytes)/Math.log(1024)),3); return `${(bytes/1024**i).toFixed(i ? 1 : 0)} ${units[i]}`; }
 function escapeHtml(value) { const el=document.createElement('span'); el.textContent=value; return el.innerHTML; }
 function fileUrl(folder, name) { return `./${folder}/${encodeURIComponent(name)}`; }
+function isImage(name) { return /\.(webp|png|jpe?g)$/i.test(name); }
 function renderFiles(files) {
   count.textContent=`${files.length} ${files.length===1 ? 'Datei' : 'Dateien'}`;
   empty.hidden=Boolean(files.length);
   fileList.innerHTML=files.map((file,index) => {
-    const preview=file.preview ? `<img src="${fileUrl(file.preview.folder, file.preview.name)}" alt="Vorschau für ${escapeHtml(file.name)}">` : '<span>NO<br>PREVIEW</span>';
+    const fallback=isImage(file.name) ? ` onerror="this.onerror=null;this.src='${fileUrl('uploads',file.name)}'"` : '';
+    const preview=file.preview ? `<img src="${fileUrl(file.preview.folder, file.preview.name)}"${fallback} alt="Vorschau für ${escapeHtml(file.name)}">` : (isImage(file.name) ? `<img src="${fileUrl('uploads',file.name)}" alt="Vorschau für ${escapeHtml(file.name)}">` : '<span>NO<br>PREVIEW</span>');
     return `<article class="file-row"><span class="file-number">${String(index+1).padStart(2,'0')}</span><div class="file-preview">${preview}</div><strong class="file-name" title="${escapeHtml(file.name)}">${escapeHtml(file.name)}</strong><span class="file-meta">${formatSize(file.size)} · ${new Date(file.updated).toLocaleDateString('de-DE')}</span><a class="download" href="${fileUrl('uploads',file.name)}" download>DOWNLOAD ↓</a></article>`;
   }).join('');
 }
